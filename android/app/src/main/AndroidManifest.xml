@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.teb_bar">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="teb_bar"
         android:icon="@mipmap/ic_launcher">
