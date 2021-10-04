@@ -29,7 +29,7 @@ class AppScreen extends StatelessWidget {
                   ),
                   PopupMenuItem<int>(
                     value:1,
-                    child:Text('Settings'),
+                    child:Text('Tutorial'),
                   ),PopupMenuItem<int>(
                     value:2,
                     child:Text('SETTINGS'),
@@ -74,6 +74,27 @@ class AppScreen extends StatelessWidget {
               MaterialPageRoute(builder:(context)=>SettingScreen()),
             );
             break;
+            case 1:
+            showDialog<void>(
+              context: context,
+              builder: (BuildContext context){
+                return AlertDialog(
+                  content: SingleChildScrollView(
+                    child: ListBody(
+                      children: const <Widget>[
+                        Text('Swap down the screen to view hidden chats.'),
+                        SizedBox(height:10.0),
+                        Text('Swap down again to hide them'),
+                        SizedBox(height: 10.0),
+                        Text('Long Press on the chat to set alias'),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+            break;
+
           default:
         }
       }
