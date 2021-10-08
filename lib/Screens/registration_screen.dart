@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:intl_phone_field/phone_number.dart';
 
 import 'otp_working_screen.dart';
 
@@ -13,8 +14,8 @@ class RegestrationScreen extends StatefulWidget {
 
 class _RegestrationScreenState extends State<RegestrationScreen> {
 
-final myNameTextController = TextEditingController();
-final myNumberTextController = TextEditingController();
+TextEditingController myNameTextController = new TextEditingController();
+TextEditingController myNumberTextController = new TextEditingController();
 
 
   @override
@@ -118,13 +119,16 @@ final myNumberTextController = TextEditingController();
                               borderSide:const BorderSide(color: Colors.black12),
                               borderRadius: BorderRadius.circular(10)),
                           ),
-                          
+                          controller: myNumberTextController,
                         initialCountryCode: 'US', //default contry code, US
                         onChanged: (phone) {
+
+                          
                             //when phone number country code is changed
                             print(phone.completeNumber); //get complete number
                             print(phone.countryCode); // get country code only
                             print(phone.number); // only phone number
+                            print(myNumberTextController.text);
                           },
                         ),
                       const SizedBox(
@@ -135,7 +139,7 @@ final myNumberTextController = TextEditingController();
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => OtpGetScreen()),
+                            MaterialPageRoute(builder: (context) => OtpGetScreen(myNumberTextController.text)),
                           );
                         },
                         style: ButtonStyle(

@@ -37,6 +37,8 @@ dependencies:
   hexcolor: ^2.0.5
   intl_phone_field:
   firebase_auth:
+  firebase_core: ^1.7.0
+  pinput: 
 
 
 
