@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   hexcolor: ^2.0.5
   intl_phone_field:
+  firebase_auth:
+
 
 
 dev_dependencies:
@@ -64,6 +66,8 @@ flutter:
   assets:
     - assets/images/splash_screen.jpeg
     - assets/images/bg_img.png
+    - assets/images/logo_bg.png
+
 
   #   - images/a_dot_ham.jpeg
 

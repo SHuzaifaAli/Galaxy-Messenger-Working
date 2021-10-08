@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
+import 'otp_working_screen.dart';
+
 class RegestrationScreen extends StatefulWidget {
   const RegestrationScreen({ Key? key }) : super(key: key);
 
@@ -37,26 +39,20 @@ final myNumberTextController = TextEditingController();
           // By defaut, Scaffold background is white
           // Set its value to transparent
         backgroundColor: Colors.transparent,
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/bg_img.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
+        body: SingleChildScrollView(
           child: Column(
             children:<Widget>[
-              const SizedBox(
-                height: 28,
-              ),
+              // const SizedBox(
+              //   height: 28,
+              // ),
               Container(
                 width: 200,
                 height: 200,
-                child: Image.asset('name'),
+                child: Image.asset('assets/images/logo_bg.png'),
               ),
-              const SizedBox(
-                height: 24,
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
               Text(
                 'GALAXY MESSENGER',
                 style: TextStyle(
@@ -80,51 +76,91 @@ final myNumberTextController = TextEditingController();
               const SizedBox(
                 height: 28,
               ),
-              Container(
-                padding:const EdgeInsets.all(28),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      controller: myNameTextController,
-                      keyboardType: TextInputType.text,
-                      style:const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.all(28.0),
+                child: Container(
+                  padding:const EdgeInsets.all(28),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        controller: myNameTextController,
+                        keyboardType: TextInputType.text,
+                        style:const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        decoration: InputDecoration(
+                          labelText: 'Enter Your Name',
+                          prefixIcon: const Icon(Icons.person),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide:const  BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:const BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                        ),
                       ),
-                      decoration: InputDecoration(
-                        labelText: 'Enter Your Name',
-                        prefixIcon: const Icon(Icons.person),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide:const  BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(10)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:const BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(10)),
+                      const SizedBox(
+                        height: 12.0,
+                      ),
+                      IntlPhoneField(
+                        decoration: InputDecoration( //decoration for Input Field
+                            
+                            labelText: 'Phone Number',
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:const  BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:const BorderSide(color: Colors.black12),
+                              borderRadius: BorderRadius.circular(10)),
+                          ),
+                          
+                        initialCountryCode: 'US', //default contry code, US
+                        onChanged: (phone) {
+                            //when phone number country code is changed
+                            print(phone.completeNumber); //get complete number
+                            print(phone.countryCode); // get country code only
+                            print(phone.number); // only phone number
+                          },
+                        ),
+                      const SizedBox(
+                        height: 22,
+                      ),
+                      SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (context) => OtpGetScreen()),
+                          );
+                        },
+                        style: ButtonStyle(
+                          foregroundColor:
+                              MaterialStateProperty.all<Color>(Colors.white),
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(HexColor('#885c00')),
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                          ),
+                        ),
+                        child:const Padding(
+                          padding: EdgeInsets.all(14.0),
+                          child: Text(
+                            'Send Verification Code',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ),
                       ),
                     ),
-                    IntlPhoneField(
-                      decoration: InputDecoration( //decoration for Input Field
-                          labelText: 'Phone Number',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:const  BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(10)),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide:const BorderSide(color: Colors.black12),
-                            borderRadius: BorderRadius.circular(10)),
-                        ),
-                      initialCountryCode: 'US', //default contry code, US
-                      onChanged: (phone) {
-                          //when phone number country code is changed
-                          print(phone.completeNumber); //get complete number
-                          print(phone.countryCode); // get country code only
-                          print(phone.number); // only phone number
-                        },
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],
